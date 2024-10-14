@@ -21,15 +21,15 @@ if place:
             dates = [diction['dt_txt'] for diction in filtered_data]
             # Create a temperature plot
             figure = px.line(x=dates ,y=temperatures ,labels={'x':'Date','y':'Temperature (C)'} )
-
             st.plotly_chart(figure)
+
         if option == 'Sky':
             images = {'Clear': "images/clear.png","Clouds": "images/cloud.png",
                     "Rain": "images/rain.png","Snow": "images/snow.png"}
             sky_condtions = [diction['weather'][0]['main'] for diction in filtered_data]
             img_paths = [images[condition] for condition in sky_condtions]
-            
             st.image(img_paths, width=111)
+            
     except KeyError:
         st.info("Please Enter a Valid Place")
         st.info(f"{place.title()} is not a Valid Place")
